@@ -1,19 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { MantineProvider, AppShell } from "@mantine/core";
+import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "../assets/scss/common.scss";
 import Sidebar from "@/components/Common/Sidebar";
+import Header from "@/components/Common/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -22,42 +20,60 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
+  const [colorScheme, setColorScheme] = useState("light");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const publicPaths = ["/login", "/signup"];
-    const pathIsPublic = publicPaths.includes(pathname);
-
-    if (!token && !pathIsPublic) {
+    if (!token && !publicPaths.includes(pathname)) {
       router.push("/login");
     }
   }, [router, pathname]);
 
+  useEffect(() => {
+    const savedColorScheme = localStorage.getItem("mantine-color-scheme");
+    if (savedColorScheme) {
+      setColorScheme(savedColorScheme);
+    }
+  }, []);
+
+  const toggleColorScheme = (value) => {
+    const nextColorScheme =
+      value || (colorScheme === "dark" ? "light" : "dark");
+    setColorScheme(nextColorScheme);
+    localStorage.setItem("mantine-color-scheme", nextColorScheme);
+  };
+
   const publicPaths = ["/login", "/signup"];
-  const pathIsPublic = publicPaths.includes(pathname);
+  const isPublicPage = publicPaths.includes(pathname);
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {/* <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        > */}
         <MantineProvider
+          theme={{ colorScheme }}
           withGlobalStyles
           withNormalizeCSS
-          theme={{
-            defaultRadius: "md",
-            colors: { primary: ["#1D4ED8", "#1E40AF"] },
-          }}
         >
-          {pathIsPublic ? (
+          {isPublicPage ? (
             children
           ) : (
-            <AppShell
-              padding="md"
-              aside={{ width: 300, render: () => <Sidebar /> }}
-            >
-              {children}
+            <AppShell padding="md">
+              <AppShell.Header>
+                <Header />
+              </AppShell.Header>
+              <AppShell.Navbar width={250}>
+                <Sidebar />
+              </AppShell.Navbar>
+              <AppShell.Main>{children}</AppShell.Main>
             </AppShell>
           )}
         </MantineProvider>
+        {/* </ColorSchemeProvider> */}
       </body>
     </html>
   );
