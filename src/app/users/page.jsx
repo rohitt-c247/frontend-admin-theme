@@ -6,7 +6,7 @@ const UserListPage = dynamic(() => import("../../components/Auth/Users"), {
   ssr: false,
 });
 
-export default function Register() {
+export default function UsersList() {
   return (
     <>
       <UserListPage />

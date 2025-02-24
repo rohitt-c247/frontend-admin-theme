@@ -1,0 +1,21 @@
+.sidebar {
+    background-color: #1d4ed8;
+    color: white;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.navLink:hover {
+    background-color: #1e40af;
+}
+
+.navLink span {
+    margin-left: 8px;
+}

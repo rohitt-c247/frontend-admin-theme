@@ -40,7 +40,7 @@ export default function LoginPage() {
         localStorage.setItem("token", response.data.data.token); // Store the token in local storage
         toast.success(response.data.message || "Login successful!"); // Show success toast
         setTimeout(() => {
-          router.push("/profile"); // Redirect to profile page after successful login
+          router.push("/dashboard"); // Redirect to dashboard page after successful login
         }, 1000); // Delay navigation by 1 second
       } else {
         setError("Invalid credentials");
