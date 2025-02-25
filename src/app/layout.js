@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
-import { AppShell } from "@mantine/core";
+import { MantineProvider, AppShell } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "../assets/scss/common.scss";
 import Sidebar from "@/components/Common/Sidebar";
 import Header from "@/components/Common/Header";
+import useAuth from "@/hooks/useAuth";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -18,17 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export default function RootLayout({ children }) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const { isPublicPage } = useAuth();
   const [colorScheme, setColorScheme] = useState("light");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const publicPaths = ["/login", "/signup"];
-    if (!token && !publicPaths.includes(pathname)) {
-      router.push("/login");
-    }
-  }, [router, pathname]);
 
   useEffect(() => {
     const savedColorScheme = localStorage.getItem("mantine-color-scheme");
@@ -44,16 +34,9 @@ export default function RootLayout({ children }) {
     localStorage.setItem("mantine-color-scheme", nextColorScheme);
   };
 
-  const publicPaths = ["/login", "/signup"];
-  const isPublicPage = publicPaths.includes(pathname);
-
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {/* <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
-        > */}
         <MantineProvider
           theme={{ colorScheme }}
           withGlobalStyles
@@ -62,18 +45,30 @@ export default function RootLayout({ children }) {
           {isPublicPage ? (
             children
           ) : (
-            <AppShell padding="md">
+            <AppShell
+              navbar={{
+                width: 250,
+                breakpoint: "sm",
+                collapsed: { mobile: true },
+              }}
+              header={{ height: 60 }}
+              padding="md"
+            >
+              {/* Header Section */}
               <AppShell.Header>
                 <Header />
               </AppShell.Header>
-              <AppShell.Navbar width={250}>
+
+              {/* Sidebar Section */}
+              <AppShell.Navbar p="md">
                 <Sidebar />
               </AppShell.Navbar>
+
+              {/* Main Content Section */}
               <AppShell.Main>{children}</AppShell.Main>
             </AppShell>
           )}
         </MantineProvider>
-        {/* </ColorSchemeProvider> */}
       </body>
     </html>
   );

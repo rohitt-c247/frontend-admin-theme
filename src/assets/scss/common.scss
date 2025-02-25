@@ -13,3 +13,17 @@
 aside {
     display: block !important;
 }
+
+.has-users .mantine-datatable-empty-state {
+    display: none !important;
+}
+
+.mantine-datatable-loader {
+    display: none !important;
+}
+
+.mantine-datatable-pagination {
+    display: flex;
+    justify-content: flex-end;
+    /* Align pagination to the right */
+}

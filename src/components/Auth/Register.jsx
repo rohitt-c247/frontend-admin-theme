@@ -18,7 +18,7 @@ import style from "../../assets/scss/admin.module.scss";
 import authStyle from "./auth.module.scss";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { API_ENDPOINTS } from "../../../frameworks/utils/api-endpoints"; // Import API endpoints
+import { API_ENDPOINTS } from "../../../frameworks/utils/api-endpoints";
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
@@ -58,14 +58,13 @@ export default function RegisterPage() {
       name: values.name,
       email: values.email,
       password: values.password,
-      // confirmPassword: values.confirmPassword,
       phoneNumber: values.phoneNumber,
     });
 
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: API_ENDPOINTS.REGISTER, // Use the REGISTER endpoint
+      url: API_ENDPOINTS.REGISTER,
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
@@ -78,14 +77,14 @@ export default function RegisterPage() {
 
       if (res.data.success) {
         setLoading(false);
-        toast.success(response.data.message || "Registration successful!"); // Show success toast
+        toast.success(res.data.message || "Registration successful!");
 
         setTimeout(() => {
-          router.push("/login"); // Redirect after toast is shown
-        }, 1000); // 🔹 Delay navigation by 1 second
+          router.push("/login");
+        }, 1000);
       } else {
         setLoading(false);
-        toast.error(res.data.message || "Registration failed!"); // Show error toast
+        toast.error(res.data.message || "Registration failed!");
       }
     } catch (error) {
       setLoading(false);
@@ -94,9 +93,9 @@ export default function RegisterPage() {
         error.response.data &&
         error.response.data.message
       ) {
-        toast.error(error.response.data.message); // Show error message from server
+        toast.error(error.response.data.message);
       } else {
-        toast.error("An error occurred during registration"); // Show generic error message
+        toast.error("An error occurred during registration");
       }
     }
   };
@@ -136,13 +135,6 @@ export default function RegisterPage() {
                   {...form.getInputProps("password")}
                 />
               </Grid.Col>
-              {/* <Grid.Col span={6}>
-                <PasswordInput
-                  label="Confirm Password"
-                  placeholder="Confirm Password"
-                  {...form.getInputProps("confirmPassword")}
-                />
-              </Grid.Col> */}
               <Grid.Col span={12}>
                 <TextInput
                   label="Phone Number"
@@ -162,6 +154,13 @@ export default function RegisterPage() {
             >
               Register
             </Button>
+            <Grid>
+              <Grid.Col span={12}>
+                <Text align="center" mt="xs">
+                  Already have an account? <a href="/login">Login</a>
+                </Text>
+              </Grid.Col>
+            </Grid>
           </form>
         </Paper>
       </Container>

@@ -16,15 +16,17 @@ export default function Header() {
   return (
     <AppShell.Header height={60} p="xs">
       <Group position="apart" align="center" style={{ height: "100%" }}>
-        <Title order={3}>Dashboard</Title>
-        <ActionIcon
-          variant="outline"
-          color={dark ? "yellow" : "blue"}
-          onClick={() => toggleColorScheme()}
-          title="Toggle color scheme"
-        >
-          {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
-        </ActionIcon>
+        <Title order={3}>Admin Theme</Title>
+        <div style={{ marginLeft: "auto" }}>
+          <ActionIcon
+            variant="outline"
+            color={dark ? "yellow" : "blue"}
+            onClick={() => toggleColorScheme()}
+            title="Toggle color scheme"
+          >
+            {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+          </ActionIcon>
+        </div>
       </Group>
     </AppShell.Header>
   );

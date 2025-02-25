@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Correct import for App Router
+import { useRouter } from "next/navigation";
 import {
   Container,
   Paper,
@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import style from "../../assets/scss/admin.module.scss";
 import authStyle from "./auth.module.scss";
 import axios from "axios";
-import { API_ENDPOINTS } from "../../../frameworks/utils/api-endpoints"; // Import API endpoints
+import { API_ENDPOINTS } from "../../../frameworks/utils/api-endpoints";
 import Link from "next/link";
 
 export default function ProfilePage() {
@@ -25,7 +25,7 @@ export default function ProfilePage() {
     email: "",
     phoneNumber: "",
   });
-  const router = useRouter(); // ✅ Using the correct import
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUserDetails = async () => {

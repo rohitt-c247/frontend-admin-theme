@@ -93,9 +93,7 @@ export default function LoginPage() {
                   required
                 />
                 <Checkbox label="Remember Me" mt="md" />
-                <Text align="right" mt="xs">
-                  <a href="/forgot-password">Forgot Password?</a>
-                </Text>
+
                 <Button
                   type="submit"
                   fullWidth
@@ -106,6 +104,13 @@ export default function LoginPage() {
                 >
                   Sign In
                 </Button>
+                <Grid>
+                  <Grid.Col span={12}>
+                    <Text align="right" mt="xs">
+                      Dont't have an account? <a href="/signup">Sign up</a>
+                    </Text>
+                  </Grid.Col>
+                </Grid>
               </form>
             </Paper>
           </Container>

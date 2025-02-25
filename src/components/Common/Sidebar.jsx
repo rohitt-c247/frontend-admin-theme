@@ -21,6 +21,12 @@ export default function Sidebar() {
       />
       <NavLink
         component={Link}
+        href="/profile"
+        label="Profile"
+        leftSection={<IconUsers size={16} />}
+      />
+      <NavLink
+        component={Link}
         href="/settings"
         label="Settings"
         leftSection={<IconSettings size={16} />}
