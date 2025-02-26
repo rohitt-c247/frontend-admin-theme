@@ -11,6 +11,7 @@ import {
   Paper,
   Title,
   Text,
+  Flex,
   Grid,
 } from "@mantine/core";
 import style from "./auth.module.scss";
@@ -57,63 +58,65 @@ export default function LoginPage() {
       <ToastContainer />
       <Grid className="h-100" classNames={{ inner: "h-100" }} gutter="none">
         <Grid.Col span={7}>
-          <Container size={500}>
-            <Paper shadow="lg" p="xl" radius="md" withBorder>
-              <Title align="center" order={2} mb="xs">
-                Login
-              </Title>
-              <Text align="center" size="sm" color="dimmed" mb="md">
-                Enter Your Credentials To Access The ABC Portal
-              </Text>
-
-              {error && (
-                <Text color="red" align="center">
-                  {error}
+          <Flex align="center" className="h-100">
+            <Container size={500} w="100%">
+              <Paper shadow="lg" p="xl" radius="md" withBorder>
+                <Title align="center" order={2} mb="xs">
+                  Login
+                </Title>
+                <Text align="center" size="sm" color="dimmed" mb="md">
+                  Enter Your Credentials To Access The ABC Portal
                 </Text>
-              )}
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleLogin();
-                }}
-              >
-                <TextInput
-                  label="Email *"
-                  placeholder="example@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <PasswordInput
-                  label="Password *"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <Checkbox label="Remember Me" mt="md" />
+                {error && (
+                  <Text color="red" align="center">
+                    {error}
+                  </Text>
+                )}
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  mt="lg"
-                  loading={loading}
-                  radius="md"
-                  style={{ backgroundColor: "#007bff", color: "#fff" }} // Custom button style
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }}
                 >
-                  Sign In
-                </Button>
-                <Grid>
-                  <Grid.Col span={12}>
-                    <Text align="right" mt="xs">
-                      Dont't have an account? <a href="/signup">Sign up</a>
-                    </Text>
-                  </Grid.Col>
-                </Grid>
-              </form>
-            </Paper>
-          </Container>
+                  <TextInput
+                    label="Email"
+                    placeholder="example@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <PasswordInput
+                    label="Password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <Checkbox label="Remember Me" mt="md" />
+
+                  <Button
+                    type="submit"
+                    fullWidth
+                    mt="lg"
+                    loading={loading}
+                    radius="md"
+                    style={{ backgroundColor: "#007bff", color: "#fff" }} // Custom button style
+                  >
+                    Sign In
+                  </Button>
+                  <Grid>
+                    <Grid.Col span={12}>
+                      <Text align="right" mt="xs">
+                        Dont't have an account? <a href="/signup">Sign up</a>
+                      </Text>
+                    </Grid.Col>
+                  </Grid>
+                </form>
+              </Paper>
+            </Container>
+          </Flex>
         </Grid.Col>
         <Grid.Col span={5} className="h-100">
           <div className={style["auth-image"]}></div>

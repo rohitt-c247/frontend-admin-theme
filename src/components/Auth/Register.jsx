@@ -9,13 +9,13 @@ import {
   Paper,
   Title,
   Text,
+  Flex,
   Grid,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import style from "../../assets/scss/admin.module.scss";
-import authStyle from "./auth.module.scss";
+import style from "./auth.module.scss";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { API_ENDPOINTS } from "../../../frameworks/utils/api-endpoints";
@@ -101,69 +101,78 @@ export default function RegisterPage() {
   };
 
   return (
-    <section className={authStyle["auth-section"]}>
+    <section className={`h-full ${style["auth-section"]}`}>
       <ToastContainer />
-      <Container size={500} my={50}>
-        <Paper shadow="lg" p="xl" radius="md" withBorder>
-          <Title align="center" order={2} mb="xs">
-            Create an Account
-          </Title>
-          <Text align="center" size="sm" color="dimmed" mb="md">
-            Enter your details below to register
-          </Text>
-
-          <form onSubmit={form.onSubmit(handleSubmit)}>
-            <Grid gutter="md">
-              <Grid.Col span={12}>
-                <TextInput
-                  label="Full Name"
-                  placeholder="Full Name"
-                  {...form.getInputProps("name")}
-                />
-              </Grid.Col>
-              <Grid.Col span={12}>
-                <TextInput
-                  label="Email"
-                  placeholder="example@email.com"
-                  {...form.getInputProps("email")}
-                />
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <PasswordInput
-                  label="Password"
-                  placeholder="Password"
-                  {...form.getInputProps("password")}
-                />
-              </Grid.Col>
-              <Grid.Col span={12}>
-                <TextInput
-                  label="Phone Number"
-                  placeholder="Phone Number"
-                  {...form.getInputProps("phoneNumber")}
-                />
-              </Grid.Col>
-            </Grid>
-
-            <Button
-              type="submit"
-              fullWidth
-              mt="lg"
-              loading={loading}
-              radius="md"
-              className={style.btn}
-            >
-              Register
-            </Button>
-            <Grid>
-              <Grid.Col span={12}>
-                <Text align="center" mt="xs">
-                  Already have an account? <a href="/login">Login</a>
+      <Grid className="h-100" classNames={{ inner: "h-100" }} gutter="none">
+        <Grid.Col span={7}>
+          <Flex align="center" className="h-100">
+            <Container size={500} my={50}>
+              <Paper shadow="lg" p="xl" radius="md" withBorder>
+                <Title align="center" order={2} mb="xs">
+                  Create an Account
+                </Title>
+                <Text align="center" size="sm" color="dimmed" mb="md">
+                  Enter your details below to register
                 </Text>
-              </Grid.Col>
-            </Grid>
-          </form>
-        </Paper>
-      </Container>
+
+                <form onSubmit={form.onSubmit(handleSubmit)}>
+                  <Grid gutter="md">
+                    <Grid.Col span={12}>
+                      <TextInput
+                        label="Full Name"
+                        placeholder="Full Name"
+                        {...form.getInputProps("name")}
+                      />
+                    </Grid.Col>
+                    <Grid.Col span={12}>
+                      <TextInput
+                        label="Email"
+                        placeholder="example@email.com"
+                        {...form.getInputProps("email")}
+                      />
+                    </Grid.Col>
+                    <Grid.Col span={6}>
+                      <PasswordInput
+                        label="Password"
+                        placeholder="Password"
+                        {...form.getInputProps("password")}
+                      />
+                    </Grid.Col>
+                    <Grid.Col span={12}>
+                      <TextInput
+                        label="Phone Number"
+                        placeholder="Phone Number"
+                        {...form.getInputProps("phoneNumber")}
+                      />
+                    </Grid.Col>
+                  </Grid>
+
+                  <Button
+                    type="submit"
+                    fullWidth
+                    mt="lg"
+                    loading={loading}
+                    radius="md"
+                    className={style.btn}
+                  >
+                    Register
+                  </Button>
+                  <Grid>
+                    <Grid.Col span={12}>
+                      <Text align="center" mt="xs">
+                        Already have an account? <a href="/login">Login</a>
+                      </Text>
+                    </Grid.Col>
+                  </Grid>
+                </form>
+              </Paper>
+            </Container>
+          </Flex>
+        </Grid.Col>
+        <Grid.Col span={5} className="h-100">
+          <div className={style["auth-image"]}></div>
+        </Grid.Col>
+      </Grid>
     </section>
   );
 }

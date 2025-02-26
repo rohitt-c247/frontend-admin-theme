@@ -173,7 +173,6 @@ export default function UserListPage() {
                 striped
                 highlightOnHover
                 withColumnBorders
-                shadow="md"
                 noRecordsText={filteredUsers.length > 0 ? "" : "No users found"}
               />
             </div>
