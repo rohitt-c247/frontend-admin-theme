@@ -9,6 +9,7 @@ import {
   Paper,
   Title,
   Text,
+  Flex,
   Grid,
   NumberInput,
 } from "@mantine/core";

@@ -1,29 +1,28 @@
 .btn {
-    background-color: blue;
+  background-color: blue;
 }
 
 .h-full {
-    height: 100vh;
+  height: 100vh;
 }
 
 .h-100 {
-    height: 100%;
+  height: 100%;
 }
 
 aside {
-    display: block !important;
+  display: block !important;
 }
 
 .has-users .mantine-datatable-empty-state {
-    display: none !important;
+  display: none !important;
 }
 
 .mantine-datatable-loader {
-    display: none !important;
+  display: none !important;
 }
 
 .mantine-datatable-pagination {
-    display: flex;
-    justify-content: flex-end;
-    /* Align pagination to the right */
+  display: flex;
+  justify-content: flex-end;
 }
