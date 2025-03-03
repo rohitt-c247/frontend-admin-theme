@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VALID_MFG_DATE = exports.VALID_EXPIRY_DATE = exports.REQUIRED_COMPANY_NAME = exports.REQUIRED_CATEGORY = exports.REQUIRED_ITEM_NAME = exports.SOMETHING_WRONG_WHEN_UPLOAD = exports.MFG_DATE_AFTER_EXPIRY_DATE = exports.GET_BATCHES_ERROR = exports.GET_BATCHES_SUCCESS = exports.FILE_TYPE_ERROR = exports.FILE_UPLOAD_LIMIT_ERROR = exports.FILE_SIZE_ERROR = exports.FILE_DATA_NOT_FOUND = exports.FILE_DATA_DELETED_ERROR = exports.FILE_DATA_DELETED_SUCCESS = exports.FILE_DOWNLOAD_ERROR = exports.FILE_DOWNLOAD_SUCCESS = exports.FILE_DATA_UPLOAD_SUCCESS = exports.FILE_VALIDATION_ERROR = exports.FILE_PROCESSING_ERROR = exports.FILE_REQUIRED_ERROR = exports.DIRECTORY_FOUND_ERROR = exports.BATCH_NOT_FOUND = void 0;
+//constants
+// import { dataManagementVariables } from '@constants';
+const dataManagement_variables_1 = require("../variables/dataManagement.variables");
+exports.BATCH_NOT_FOUND = 'Batch not found.';
+exports.DIRECTORY_FOUND_ERROR = 'No directory for upload files:';
+exports.FILE_REQUIRED_ERROR = 'File is required.';
+exports.FILE_PROCESSING_ERROR = 'Error processing file.';
+exports.FILE_VALIDATION_ERROR = 'File validation failed:';
+exports.FILE_DATA_UPLOAD_SUCCESS = 'File data uploaded successfully.';
+exports.FILE_DOWNLOAD_SUCCESS = 'File downloaded successfully.';
+exports.FILE_DOWNLOAD_ERROR = 'Error downloading file.';
+exports.FILE_DATA_DELETED_SUCCESS = 'File data deleted successfully.';
+exports.FILE_DATA_DELETED_ERROR = 'Error deleting file data.';
+exports.FILE_DATA_NOT_FOUND = 'File data not found.';
+exports.FILE_SIZE_ERROR = 'File size exceeds the allowed limit of:';
+exports.FILE_UPLOAD_LIMIT_ERROR = 'Unexpected file upload:';
+exports.FILE_TYPE_ERROR = `Only ${dataManagement_variables_1.FILE_FORMATS.join(', ')} files are allowed!`;
+exports.GET_BATCHES_SUCCESS = 'Batches fetched successfully.';
+exports.GET_BATCHES_ERROR = 'Error fetching batches.';
+exports.MFG_DATE_AFTER_EXPIRY_DATE = 'Expiry date must be after MFG Date.';
+exports.SOMETHING_WRONG_WHEN_UPLOAD = 'Something went wrong when uploading.';
+exports.REQUIRED_ITEM_NAME = 'Item name is required.';
+exports.REQUIRED_CATEGORY = 'Category is required.';
+exports.REQUIRED_COMPANY_NAME = 'Company name is required.';
+exports.VALID_EXPIRY_DATE = 'Expiry date must be a valid date.';
+exports.VALID_MFG_DATE = 'MFG date must be a valid date.';
+//# sourceMappingURL=dataManagement.messages.js.map

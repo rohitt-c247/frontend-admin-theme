@@ -1,0 +1,1 @@
+{"version":3,"file":"schemas.js","sourceRoot":"","sources":["../../../src/docs/notification/schemas.ts"],"names":[],"mappings":";;AAAA,mCAA6C;AAE7C,MAAM,mBAAmB,GAAG;IAC1B,YAAY,EAAE;QACZ,IAAI,EAAE,QAAQ;QACd,UAAU,EAAE,4BAAmB,CAAC,sBAAsB,CAAC,oBAAoB,CAAC;KAC7E;CACF,CAAC;AACF,kBAAe,mBAAmB,CAAC"}

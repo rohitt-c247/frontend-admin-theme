@@ -1,16 +1,26 @@
 "use client";
 
-import Sidebar from "@/components/Common/Sidebar";
-import Dashboard from "@/components/Dashboard/Dashboard";
-import { AppShell } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import "./page.module.css"
 
 export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("token",token)
+      router.push("/dashboard");
+    }
+    else{
+      router.push("/login");
+    }
+  }, [router]);
+
   return (
-    <AppShell
-      navbar={{ width: 250, breakpoint: "sm", collapsed: { mobile: true } }}
-    >
-      <Sidebar />
-      <Dashboard />
-    </AppShell>
+    <>
+      Redirecting....
+    </>
   );
 }
