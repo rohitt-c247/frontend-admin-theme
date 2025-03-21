@@ -8,11 +8,15 @@ import s3FileHandlerRoute from './s3FileHandler.route';
 import ssoRoute from './sso.route';
 import twoFARoute from './twoFA.route';
 import userRoute from './user.route';
+import studentRoute from './student.route';
+import categoryRoute from './category.route';
 
 const indexRoute = express.Router();
 
 indexRoute.use('/auth', authRoute);
 indexRoute.use('/user', userRoute);
+indexRoute.use('/student', studentRoute);
+indexRoute.use('/category', categoryRoute);
 indexRoute.use('/local-files', localFileHandlerRoute);
 indexRoute.use('/s3-files', s3FileHandlerRoute);
 indexRoute.use('/sso', ssoRoute);

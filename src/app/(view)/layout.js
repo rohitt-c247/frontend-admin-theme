@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import "../globals.css";
 import { MantineProvider, AppShell } from "@mantine/core";
 import "@mantine/core/styles.css";
+import '@mantine/dates/styles.css';
 
 import "../../assets/scss/common.scss";
 import Sidebar from "@/components/Common/Sidebar";

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const UserListPage = dynamic(() => import("../../../components/Users/UsersList"), {
+const UserListPage = dynamic(() => import("../../../components/Users/UsertList"), {
   ssr: false,
 });
 

@@ -9,6 +9,7 @@ import {
   ActionIcon,
   Group,
   Select,
+  Button,
 } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 import { toast } from "react-toastify";
@@ -18,7 +19,7 @@ import { IconEdit, IconTrash } from "@tabler/icons-react";
 
 const PAGE_SIZES = [10, 15, 20];
 
-export default function UserListPage() {
+export default function UsertListPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -160,6 +161,13 @@ export default function UserListPage() {
               { value: 'desc', label: 'Descending' },
             ]}
           />
+          <Button
+            component="a"
+            href="/create-user"
+            color="blue"
+          >
+            Add User
+          </Button>
         </Group>
         {loading ? (
           <Loader />

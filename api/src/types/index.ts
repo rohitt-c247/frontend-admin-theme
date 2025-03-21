@@ -7,3 +7,4 @@ export * from './dataManagement.type';
 export * from './notification.type';
 export * from './emailTemplates.type';
 export * from './common.type';
+export * from './student.type';

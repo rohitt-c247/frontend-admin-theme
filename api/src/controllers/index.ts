@@ -7,3 +7,5 @@ export * as twoFAController from './twoFA.controller';
 export * as dataManagementController from './dataManagement.controller';
 export * as paymentController from './payment.controller';
 export * as notificationController from './notification.controller';
+export * as studentController from './student.controller';
+export * as categoryController from './category.controller';

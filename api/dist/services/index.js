@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userCommonService = exports.notificationService = exports.socketService = exports.paymentService = exports.stripeService = exports.userService = exports.dataManagementService = exports.twoFAService = exports.ssoService = exports.s3FileHandlerService = exports.localFileHandlerService = exports.authService = void 0;
+exports.categoryService = exports.studentCommonService = exports.studentService = exports.userCommonService = exports.notificationService = exports.socketService = exports.paymentService = exports.stripeService = exports.userService = exports.dataManagementService = exports.twoFAService = exports.ssoService = exports.s3FileHandlerService = exports.localFileHandlerService = exports.authService = void 0;
 exports.authService = __importStar(require("./auth.service"));
 exports.localFileHandlerService = __importStar(require("./localFileHandler.service"));
 exports.s3FileHandlerService = __importStar(require("./s3FileHandler.service"));
@@ -46,4 +46,7 @@ exports.paymentService = __importStar(require("./payment.service"));
 exports.socketService = __importStar(require("./socket.service"));
 exports.notificationService = __importStar(require("./notification.service"));
 exports.userCommonService = __importStar(require("./userCommon.service"));
+exports.studentService = __importStar(require("./student.service"));
+exports.studentCommonService = __importStar(require("./studentCommon.service"));
+exports.categoryService = __importStar(require("./category.service"));
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,6 @@
 "use client";
 
+import { APP_ROUTES } from "@/constants/routes";
 import { AppShell, NavLink } from "@mantine/core";
 import { IconHome, IconUsers } from "@tabler/icons-react";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const pathname = usePathname();
+
   return (
     <AppShell.Navbar width={250} p="xs">
       <NavLink
@@ -28,6 +30,13 @@ export default function Sidebar() {
         href="/profile"
         active={pathname === "/profile"}
         label="Profile"
+        leftSection={<IconUsers size={16} />}
+      />
+      <NavLink
+        component={Link}
+        href="/student"
+        active={APP_ROUTES.STUDENT.includes(pathname)}
+        label="Student"
         leftSection={<IconUsers size={16} />}
       />
     </AppShell.Navbar>

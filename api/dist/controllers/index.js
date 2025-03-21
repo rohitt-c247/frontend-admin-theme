@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.notificationController = exports.paymentController = exports.dataManagementController = exports.twoFAController = exports.ssoController = exports.s3FileHandlerController = exports.localFileHandlerController = exports.authController = exports.userController = void 0;
+exports.categoryController = exports.studentController = exports.notificationController = exports.paymentController = exports.dataManagementController = exports.twoFAController = exports.ssoController = exports.s3FileHandlerController = exports.localFileHandlerController = exports.authController = exports.userController = void 0;
 exports.userController = __importStar(require("./user.controller"));
 exports.authController = __importStar(require("./auth.controller"));
 exports.localFileHandlerController = __importStar(require("./localFileHandler.controller"));
@@ -43,4 +43,6 @@ exports.twoFAController = __importStar(require("./twoFA.controller"));
 exports.dataManagementController = __importStar(require("./dataManagement.controller"));
 exports.paymentController = __importStar(require("./payment.controller"));
 exports.notificationController = __importStar(require("./notification.controller"));
+exports.studentController = __importStar(require("./student.controller"));
+exports.categoryController = __importStar(require("./category.controller"));
 //# sourceMappingURL=index.js.map

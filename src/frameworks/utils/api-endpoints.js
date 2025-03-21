@@ -3,5 +3,7 @@ export const API_ENDPOINTS = {
   SIGNUP: "/auth/register",
   USER: "/user",
   USER_LIST: "/user/list",
+  STUDENT: "/student",
+  CATEGORY: "/category",
   // Add other API endpoints as needed
 };

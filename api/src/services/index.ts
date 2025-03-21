@@ -10,3 +10,6 @@ export * as paymentService from './payment.service';
 export * as socketService from './socket.service';
 export * as notificationService from './notification.service';
 export * as userCommonService from './userCommon.service';
+export * as studentService from './student.service';
+export * as studentCommonService from './studentCommon.service';
+export * as categoryService from './category.service';

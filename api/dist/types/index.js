@@ -23,4 +23,5 @@ __exportStar(require("./dataManagement.type"), exports);
 __exportStar(require("./notification.type"), exports);
 __exportStar(require("./emailTemplates.type"), exports);
 __exportStar(require("./common.type"), exports);
+__exportStar(require("./student.type"), exports);
 //# sourceMappingURL=index.js.map
