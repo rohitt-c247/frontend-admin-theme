@@ -10,8 +10,8 @@ import type { UnifiedServiceResponse } from '../types/customTypes';
 /**
  * Create a new category
  */
-export const createCategory = async (categoryName: string, categoryType: string, status: number, createdBy: string): Promise<UnifiedServiceResponse> => {
-  const newCategory = new Category({ categoryName, categoryType, status, createdBy });
+export const createCategory = async (categoryName: string, categoryType: string, status: number): Promise<UnifiedServiceResponse> => {
+  const newCategory = new Category({ categoryName, categoryType, status });
   const createdCategory = await newCategory.save();
   return {
     status: CREATED,
@@ -88,7 +88,7 @@ export const getCategory = async (
 /**
  * Update an existing category
  */
-export const updateCategory = async (categoryId: string, name: string, description: string, status: number): Promise<UnifiedServiceResponse> => {
+export const updateCategory = async (categoryId: string, categoryName: string, categoryType: string, status: number): Promise<UnifiedServiceResponse> => {
   const category = await Category.findById(categoryId);
   if (!category) {
     return {
@@ -98,7 +98,7 @@ export const updateCategory = async (categoryId: string, name: string, descripti
       data: null,
     };
   }
-  Object.assign(category, { name, description, status });
+  Object.assign(category, { categoryName, categoryType, status });
   const updatedCategory = await category.save();
   return {
     status: OK,

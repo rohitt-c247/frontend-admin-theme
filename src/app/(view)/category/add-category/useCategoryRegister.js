@@ -7,9 +7,7 @@ import { toast } from "react-toastify";
 
 // You'll need to create a category service similar to studentService
 import { categoryService } from "@/services/category-service";
-
-import { categoryValidationSchema } from "@constants/categoryValidationSchema";
-
+import { categoryValidationSchema } from "@/constants/validationSchema";
 
 export function useCategoryRegister() {
   const [loading, setLoading] = useState(false);
@@ -68,7 +66,7 @@ export function useCategoryRegister() {
     // Convert status to integer
     const payload = {
       ...values,
-      status: parseInt(values.status, 10)
+      status: parseInt(values.status, 10),
     };
     
     try {
@@ -79,7 +77,7 @@ export function useCategoryRegister() {
       } else {
         res = await categoryService.createCategory(payload);
       }
-
+      
       if (res && res.success) {
         setLoading(false);
         const successMessage = isEditMode 

@@ -2,12 +2,11 @@ import { Schema, model } from 'mongoose';
 import { Counter } from './counter.model';
 
 const categorySchema = new Schema({
-  categoryId: { type: Number, unique: true },
+  categoryId: { type: String, unique: true },
   categoryName: { type: String, required: true },
   categoryType: { type: String, required: true },
   createdDate: { type: Date, default: Date.now },
   status: { type: Number, required: true },
-  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 categorySchema.pre('save', async function (next) {
@@ -17,7 +16,7 @@ categorySchema.pre('save', async function (next) {
       { $inc: { seq: 1 } },
       { new: true, upsert: true }
     );
-    this.categoryId = counter.seq;
+    this.categoryId = counter.seq.toString();
   }
   next();
 });

@@ -13,18 +13,17 @@ exports.Category = void 0;
 const mongoose_1 = require("mongoose");
 const counter_model_1 = require("./counter.model");
 const categorySchema = new mongoose_1.Schema({
-    categoryId: { type: Number, unique: true },
+    categoryId: { type: String, unique: true },
     categoryName: { type: String, required: true },
     categoryType: { type: String, required: true },
     createdDate: { type: Date, default: Date.now },
     status: { type: Number, required: true },
-    createdBy: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 categorySchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         if (this.isNew) {
             const counter = yield counter_model_1.Counter.findByIdAndUpdate({ _id: 'categoryId' }, { $inc: { seq: 1 } }, { new: true, upsert: true });
-            this.categoryId = counter.seq;
+            this.categoryId = counter.seq.toString();
         }
         next();
     });

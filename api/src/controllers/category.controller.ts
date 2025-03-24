@@ -21,8 +21,8 @@ import { categoryService } from '@services';
  */
 export const createCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { name, description, status, createdBy } = req.body;
-    const { status: resStatus, success, message, data } = await categoryService.createCategory(name, description, status, createdBy);
+    const { categoryName, categoryType, status } = req.body;
+    const { status: resStatus, success, message, data } = await categoryService.createCategory(categoryName, categoryType, status);
     if (success) {
       responseHandler(res, message, resStatus, data);
     } else {
@@ -71,8 +71,8 @@ export const getCategory = async (req: Request, res: Response, next: NextFunctio
 export const updateCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { categoryId } = req.params;
-    const { name, description, status } = req.body;
-    const { status: resStatus, success, message, data } = await categoryService.updateCategory(categoryId, name, description, status);
+    const { categoryName, categoryType, status } = req.body;
+    const { status: resStatus, success, message, data } = await categoryService.updateCategory(categoryId, categoryName, categoryType, status);
     if (success) {
       responseHandler(res, message, resStatus, data);
     } else {

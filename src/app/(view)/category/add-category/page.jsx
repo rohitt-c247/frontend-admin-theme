@@ -11,6 +11,7 @@ export default function CategoryRegister() {
     fetchLoading, 
     isEditMode, 
     handleSubmit, 
+    handleEdit,
     handleBack 
   } = useCategoryRegister();
 
@@ -22,6 +23,7 @@ export default function CategoryRegister() {
       isEditMode={isEditMode}
       handleSubmit={handleSubmit}
       handleBack={handleBack}
+      handleEdit={handleEdit}
     />
   );
 }

@@ -58,13 +58,23 @@ const useCategoryList = () => {
         }));
     };
 
+    const handleEdit = (categoryId) => {
+        router.push(`/category/${categoryId}/edit`);
+      };
+
+    const handleView = (categoryId) => {
+    router.push(`/category/${categoryId}`);
+    };
+
     return { 
         categories, 
         loading, 
         error, 
         paginationParams, 
         handlePageChange, 
-        handleLimitChange 
+        handleLimitChange,
+        handleEdit,
+        handleView,
     };
 };
 

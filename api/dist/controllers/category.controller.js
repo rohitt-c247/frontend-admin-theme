@@ -26,8 +26,8 @@ const _services_1 = require("@services");
  */
 const createCategory = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, description, status, createdBy } = req.body;
-        const { status: resStatus, success, message, data } = yield _services_1.categoryService.createCategory(name, description, status, createdBy);
+        const { categoryName, categoryType, status } = req.body;
+        const { status: resStatus, success, message, data } = yield _services_1.categoryService.createCategory(categoryName, categoryType, status);
         if (success) {
             (0, _middlewares_1.responseHandler)(res, message, resStatus, data);
         }
@@ -73,8 +73,8 @@ exports.getCategory = getCategory;
 const updateCategory = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { categoryId } = req.params;
-        const { name, description, status } = req.body;
-        const { status: resStatus, success, message, data } = yield _services_1.categoryService.updateCategory(categoryId, name, description, status);
+        const { categoryName, categoryType, status } = req.body;
+        const { status: resStatus, success, message, data } = yield _services_1.categoryService.updateCategory(categoryId, categoryName, categoryType, status);
         if (success) {
             (0, _middlewares_1.responseHandler)(res, message, resStatus, data);
         }

@@ -18,6 +18,7 @@ import {
 } from "@mantine/core";
 import { IconEdit, IconTrash, IconEye, IconDotsVertical } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
+import { useRouter } from "next/navigation";
 
 export default function CategoryListView({
   categories,
@@ -27,11 +28,12 @@ export default function CategoryListView({
   paginationParams,
   handlePageChange,
   handleLimitChange,
-  handleEdit,
-  handleView,
+  // handleEdit,
+  // handleView,
   handleDelete,
   handleAddNew
 }) {
+  const router = useRouter();
   const openDeleteModal = (categoryId, categoryName) => {
     modals.openConfirmModal({
       title: "Delete Category",
@@ -47,6 +49,14 @@ export default function CategoryListView({
       onConfirm: () => handleDelete(categoryId),
     });
   };
+
+  const handleEdit = (categoryId) => {
+    router.push(`/category/${categoryId}/edit`);
+  };
+
+const handleView= (categoryId) => {
+  router.push(`/category/${categoryId}`);
+};
 
   const renderStatus = (status) => {
     if (status === 1) {
@@ -83,7 +93,7 @@ export default function CategoryListView({
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th>Name</Table.Th>
-                  <Table.Th>Description</Table.Th>
+                  <Table.Th>Type</Table.Th>
                   <Table.Th>Created Date</Table.Th>
                   <Table.Th>Status</Table.Th>
                   <Table.Th>Actions</Table.Th>
@@ -92,9 +102,9 @@ export default function CategoryListView({
               <Table.Tbody>
                 {categories.map((category) => (
                   <Table.Tr key={category.id}>
-                    <Table.Td>{category.name}</Table.Td>
-                    <Table.Td>{category.description}</Table.Td>
-                    <Table.Td>{category.createdAt}</Table.Td>
+                    <Table.Td>{category.categoryName}</Table.Td>
+                    <Table.Td>{category.categoryType}</Table.Td>
+                    <Table.Td> {new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(category.createdDate))}</Table.Td>
                     <Table.Td>{renderStatus(category.status)}</Table.Td>
                     <Table.Td>
                       <Menu
@@ -118,15 +128,15 @@ export default function CategoryListView({
                           </Menu.Item>
                           <Menu.Item
                             icon={<IconEdit size={rem(14)} />}
-                            onClick={() => handleEdit(category.id)}
+                            onClick={() => handleEdit(category._id)}
                           >
                             Edit
                           </Menu.Item>
                           <Menu.Item
                             icon={<IconTrash size={rem(14)} />}
                             color="red"
-                            onClick={() => openDeleteModal(category.id, category.name)}
-                            disabled={deleteLoading && deletingId === category.id}
+                            onClick={() => openDeleteModal(category.categoryId, category.categoryName)}
+                            disabled={deleteLoading && deletingId === category.categoryId}
                           >
                             {deleteLoading && deletingId === category.id ? "Deleting..." : "Delete"}
                           </Menu.Item>

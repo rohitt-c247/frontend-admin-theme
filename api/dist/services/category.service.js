@@ -15,8 +15,8 @@ const _constants_1 = require("@constants");
 /**
  * Create a new category
  */
-const createCategory = (categoryName, categoryType, status, createdBy) => __awaiter(void 0, void 0, void 0, function* () {
-    const newCategory = new _models_1.Category({ categoryName, categoryType, status, createdBy });
+const createCategory = (categoryName, categoryType, status) => __awaiter(void 0, void 0, void 0, function* () {
+    const newCategory = new _models_1.Category({ categoryName, categoryType, status });
     const createdCategory = yield newCategory.save();
     return {
         status: _constants_1.CREATED,
@@ -80,7 +80,7 @@ exports.getCategory = getCategory;
 /**
  * Update an existing category
  */
-const updateCategory = (categoryId, name, description, status) => __awaiter(void 0, void 0, void 0, function* () {
+const updateCategory = (categoryId, categoryName, categoryType, status) => __awaiter(void 0, void 0, void 0, function* () {
     const category = yield _models_1.Category.findById(categoryId);
     if (!category) {
         return {
@@ -90,7 +90,7 @@ const updateCategory = (categoryId, name, description, status) => __awaiter(void
             data: null,
         };
     }
-    Object.assign(category, { name, description, status });
+    Object.assign(category, { categoryName, categoryType, status });
     const updatedCategory = yield category.save();
     return {
         status: _constants_1.OK,

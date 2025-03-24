@@ -39,6 +39,13 @@ export default function Sidebar() {
         label="Student"
         leftSection={<IconUsers size={16} />}
       />
+      <NavLink
+        component={Link}
+        href="/category"
+        active={APP_ROUTES.CATEGORY.includes(pathname)}
+        label="Category"
+        leftSection={<IconUsers size={16} />}
+      />
     </AppShell.Navbar>
   );
 }

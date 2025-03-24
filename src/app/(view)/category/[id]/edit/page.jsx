@@ -1,14 +1,14 @@
 "use client";
 
-import StudentRegisterView from "../../register/StudentRegisterView";
-import { useStudentRegister } from "../../register/useStudentRegister";
+import CategoryRegisterView from "../../add-category/CategoryRegisterView";
+import { useCategoryRegister } from "../../add-category/useCategoryRegister";
 
 // This component reuses the same view and hook for editing
 export default function EditStudent() {
-  const { form, loading, fetchLoading, isEditMode, handleSubmit } = useStudentRegister();
+  const { form, loading, fetchLoading, isEditMode, handleSubmit } = useCategoryRegister();
 
   return (
-    <StudentRegisterView 
+    <CategoryRegisterView 
       form={form}
       loading={loading}
       fetchLoading={fetchLoading}
