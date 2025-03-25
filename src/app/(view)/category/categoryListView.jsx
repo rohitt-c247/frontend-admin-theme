@@ -14,9 +14,14 @@ import {
   ActionIcon,
   Loader,
   Menu,
-  rem
+  rem,
 } from "@mantine/core";
-import { IconEdit, IconTrash, IconEye, IconDotsVertical } from "@tabler/icons-react";
+import {
+  IconEdit,
+  IconTrash,
+  IconEye,
+  IconDotsVertical,
+} from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 
@@ -28,12 +33,12 @@ export default function CategoryListView({
   paginationParams,
   handlePageChange,
   handleLimitChange,
-  // handleEdit,
-  // handleView,
   handleDelete,
-  handleAddNew
+  handleEdit,
+  handleView,
 }) {
   const router = useRouter();
+
   const openDeleteModal = (categoryId, categoryName) => {
     modals.openConfirmModal({
       title: "Delete Category",
@@ -50,14 +55,6 @@ export default function CategoryListView({
     });
   };
 
-  const handleEdit = (categoryId) => {
-    router.push(`/category/${categoryId}/edit`);
-  };
-
-const handleView= (categoryId) => {
-  router.push(`/category/${categoryId}`);
-};
-
   const renderStatus = (status) => {
     if (status === 1) {
       return <Badge color="green">Active</Badge>;
@@ -69,17 +66,16 @@ const handleView= (categoryId) => {
     <Paper shadow="lg" p="xl" radius="md" withBorder>
       <Group position="apart" mb="md">
         <Title order={2}>Category List</Title>
-        <Button
-          component="a"
-          href="/category/add-category"
-        >
+        <Button component="a" href="/category/add-category">
           Add New Category
         </Button>
       </Group>
       <Divider my="md" />
 
       {loading ? (
-        <div style={{ display: "flex", justifyContent: "center", padding: "3rem" }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", padding: "3rem" }}
+        >
           <Loader size="lg" />
         </div>
       ) : categories.length === 0 ? (
@@ -104,7 +100,14 @@ const handleView= (categoryId) => {
                   <Table.Tr key={category.id}>
                     <Table.Td>{category.categoryName}</Table.Td>
                     <Table.Td>{category.categoryType}</Table.Td>
-                    <Table.Td> {new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(category.createdDate))}</Table.Td>
+                    <Table.Td>
+                      {" "}
+                      {new Intl.DateTimeFormat("en-US", {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                      }).format(new Date(category.createdDate))}
+                    </Table.Td>
                     <Table.Td>{renderStatus(category.status)}</Table.Td>
                     <Table.Td>
                       <Menu
@@ -135,10 +138,24 @@ const handleView= (categoryId) => {
                           <Menu.Item
                             icon={<IconTrash size={rem(14)} />}
                             color="red"
-                            onClick={() => openDeleteModal(category.categoryId, category.categoryName)}
-                            disabled={deleteLoading && deletingId === category.categoryId}
+                            onClick={() => {
+                              console.log(
+                                "Clicked Delete:",
+                                category._id
+                              ); // Debug log
+                              openDeleteModal(
+                                category._id,
+                                category.categoryName
+                              );
+                            }}
+                            disabled={
+                              deleteLoading &&
+                              deletingId === category._id
+                            } // Ensure consistency
                           >
-                            {deleteLoading && deletingId === category.id ? "Deleting..." : "Delete"}
+                            {deleteLoading && deletingId === category._id
+                              ? "Deleting..."
+                              : "Delete"}
                           </Menu.Item>
                         </Menu.Dropdown>
                       </Menu>
@@ -162,12 +179,18 @@ const handleView= (categoryId) => {
             </Group>
             <Group spacing="xs">
               <Text size="sm">
-                Showing {(paginationParams.page - 1) * paginationParams.limit + 1} to{" "}
-                {Math.min(paginationParams.page * paginationParams.limit, paginationParams.total)} of{" "}
-                {paginationParams.total} entries
+                Showing{" "}
+                {(paginationParams.page - 1) * paginationParams.limit + 1} to{" "}
+                {Math.min(
+                  paginationParams.page * paginationParams.limit,
+                  paginationParams.total
+                )}{" "}
+                of {paginationParams.total} entries
               </Text>
               <Pagination
-                total={Math.ceil(paginationParams.total / paginationParams.limit)}
+                total={Math.ceil(
+                  paginationParams.total / paginationParams.limit
+                )}
                 value={paginationParams.page}
                 onChange={handlePageChange}
                 size="sm"

@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/navigation";
 import "../globals.css";
 import { MantineProvider, AppShell } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
 import "@mantine/core/styles.css";
 import '@mantine/dates/styles.css';
 
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
           withGlobalStyles
           withNormalizeCSS
         >
+        <ModalsProvider>
           <AppShell
             navbar={{
               width: 250,
@@ -71,6 +73,7 @@ export default function RootLayout({ children }) {
             {/* Main Content Section */}
             <AppShell.Main>{children}</AppShell.Main>
           </AppShell>
+          </ModalsProvider>
         </MantineProvider>
   );
 }

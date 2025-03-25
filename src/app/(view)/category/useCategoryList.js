@@ -2,18 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-
+import { useRouter } from 'next/navigation';
 import { categoryService } from "@/services/category-service";    
 
 const useCategoryList = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [deletingId, setDeletingId] = useState(null);
     const [paginationParams, setPaginationParams] = useState({
         page: 1,
         limit: 10,
         total: 0
     });
+    const router = useRouter();
 
     useEffect(() => {
         fetchCategories();
@@ -60,10 +63,38 @@ const useCategoryList = () => {
 
     const handleEdit = (categoryId) => {
         router.push(`/category/${categoryId}/edit`);
-      };
+    };
 
     const handleView = (categoryId) => {
-    router.push(`/category/${categoryId}`);
+        router.push(`/category/${categoryId}`);
+    };
+
+    const handleDelete = async (categoryId) => {
+        setDeleteLoading(true);
+        setDeletingId(categoryId);
+    
+        try {
+            const formattedCategoryId = String(categoryId).trim();
+            console.log("Deleting Category ID:", formattedCategoryId);
+    
+            const res = await categoryService.deleteCategory(formattedCategoryId);
+    
+            if (!res || res.status) {
+                toast.success("Category deleted successfully");
+                fetchCategories();
+            } else if (res.success) {
+                toast.success(res.message || "Category deleted successfully");
+                fetchCategories();
+            } else {
+                toast.error(res?.message || "Failed to delete category");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message || "An error occurred while deleting the category");
+        } finally {
+            setDeleteLoading(false);
+            setDeletingId(null);
+        }
     };
 
     return { 
@@ -75,6 +106,9 @@ const useCategoryList = () => {
         handleLimitChange,
         handleEdit,
         handleView,
+        handleDelete,
+        deleteLoading,
+        deletingId
     };
 };
 

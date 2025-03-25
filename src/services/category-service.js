@@ -46,4 +46,14 @@ export const categoryService = {
         }
     },
 
+    deleteCategory: async (categoryId, ) => {
+        try {
+            const response = await http.delete(`${API_ENDPOINTS.CATEGORY}/${categoryId}`, );
+            console.log(response, "API response"); // Log the entire response
+            return response.data; // Return the entire data object
+        } catch (error) {
+            throw error.response ? error.response.data : new Error('Delete category failed');
+        }
+    },
+
 }
